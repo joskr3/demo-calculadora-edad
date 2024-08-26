@@ -79,3 +79,7 @@ button img {
 .result span {
     color: #854dff;
 }
+
+.input-group input.error {
+    border: 2px solid red;
+}

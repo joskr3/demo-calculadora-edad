@@ -1,4 +1,44 @@
 // @ts-nocheck
+// Event listeners para validaciones en tiempo real
+document.getElementById( 'day' ).addEventListener( 'input', validateDay );
+document.getElementById( 'month' ).addEventListener( 'input', validateMonth );
+document.getElementById( 'year' ).addEventListener( 'input', validateYear );
+
+// Validación del día en tiempo real
+function validateDay() {
+  const dayInput = document.getElementById( 'day' );
+  const day = parseInt( dayInput.value );
+  if ( isNaN( day ) || day < 1 || day > 31 ) {
+    dayInput.classList.add( 'error' );
+  } else {
+    dayInput.classList.remove( 'error' );
+  }
+}
+
+// Validación del mes en tiempo real
+function validateMonth() {
+  const monthInput = document.getElementById( 'month' );
+  const month = parseInt( monthInput.value );
+  if ( isNaN( month ) || month < 1 || month > 12 ) {
+    monthInput.classList.add( 'error' );
+  } else {
+    monthInput.classList.remove( 'error' );
+  }
+}
+
+// Validación del año en tiempo real
+function validateYear() {
+  const yearInput = document.getElementById( 'year' );
+  const year = parseInt( yearInput.value );
+  const currentYear = new Date().getFullYear();
+  if ( isNaN( year ) || year > currentYear ) {
+    yearInput.classList.add( 'error' );
+  } else {
+    yearInput.classList.remove( 'error' );
+  }
+}
+
+// Validación completa cuando se envía el formulario
 document.getElementById( 'age-form' ).addEventListener( 'submit', function ( event ) {
   event.preventDefault();
 
@@ -14,6 +54,7 @@ document.getElementById( 'age-form' ).addEventListener( 'submit', function ( eve
   }
 } );
 
+// Validar la fecha completa
 function validateDate( day, month, year ) {
   const currentYear = new Date().getFullYear();
   if ( year > currentYear || month < 1 || month > 12 || day < 1 || day > 31 ) {
@@ -24,6 +65,7 @@ function validateDate( day, month, year ) {
   return day <= daysInMonth;
 }
 
+// Cálculo de la edad
 function calculateAge( day, month, year ) {
   const today = new Date();
   let ageYear = today.getFullYear() - year;
@@ -43,12 +85,14 @@ function calculateAge( day, month, year ) {
   return { years: ageYear, months: ageMonth, days: ageDay };
 }
 
+// Mostrar los resultados
 function displayResult( years, months, days ) {
   document.getElementById( 'years' ).textContent = years;
   document.getElementById( 'months' ).textContent = months;
   document.getElementById( 'days' ).textContent = days;
 }
 
+// Mostrar un mensaje de error
 function displayError() {
   alert( 'Please enter a valid date.' );
 }
