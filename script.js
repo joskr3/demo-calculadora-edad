@@ -8,10 +8,18 @@ document.getElementById( 'year' ).addEventListener( 'input', validateYear );
 function validateDay() {
   const dayInput = document.getElementById( 'day' );
   const day = parseInt( dayInput.value );
+  const icon = dayInput.nextElementSibling;
+
   if ( isNaN( day ) || day < 1 || day > 31 ) {
     dayInput.classList.add( 'error' );
+    dayInput.classList.remove( 'success' );
+    icon.classList.add( 'error-icon' );
+    icon.classList.remove( 'success-icon' );
   } else {
     dayInput.classList.remove( 'error' );
+    dayInput.classList.add( 'success' );
+    icon.classList.remove( 'error-icon' );
+    icon.classList.add( 'success-icon' );
   }
 }
 
@@ -19,10 +27,18 @@ function validateDay() {
 function validateMonth() {
   const monthInput = document.getElementById( 'month' );
   const month = parseInt( monthInput.value );
+  const icon = monthInput.nextElementSibling;
+
   if ( isNaN( month ) || month < 1 || month > 12 ) {
     monthInput.classList.add( 'error' );
+    monthInput.classList.remove( 'success' );
+    icon.classList.add( 'error-icon' );
+    icon.classList.remove( 'success-icon' );
   } else {
     monthInput.classList.remove( 'error' );
+    monthInput.classList.add( 'success' );
+    icon.classList.remove( 'error-icon' );
+    icon.classList.add( 'success-icon' );
   }
 }
 
@@ -31,10 +47,18 @@ function validateYear() {
   const yearInput = document.getElementById( 'year' );
   const year = parseInt( yearInput.value );
   const currentYear = new Date().getFullYear();
+  const icon = yearInput.nextElementSibling;
+
   if ( isNaN( year ) || year > currentYear ) {
     yearInput.classList.add( 'error' );
+    yearInput.classList.remove( 'success' );
+    icon.classList.add( 'error-icon' );
+    icon.classList.remove( 'success-icon' );
   } else {
     yearInput.classList.remove( 'error' );
+    yearInput.classList.add( 'success' );
+    icon.classList.remove( 'error-icon' );
+    icon.classList.add( 'success-icon' );
   }
 }
 

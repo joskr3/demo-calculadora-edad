@@ -83,3 +83,33 @@ button img {
 .input-group input.error {
     border: 2px solid red;
 }
+
+.input-group input.error {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+}
+
+.input-group input.success {
+    border: 2px solid green;
+    background-color: #e6ffe6;
+}
+
+.input-group .icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    display: none;
+}
+
+.input-group .icon.error-icon {
+    display: block;
+    content: url('path_to_error_icon.png');
+}
+
+.input-group .icon.success-icon {
+    display: block;
+    content: url('path_to_success_icon.png');
+}
