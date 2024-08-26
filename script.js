@@ -1,4 +1,8 @@
 // @ts-nocheck
+// Cargar los sonidos
+const successSound = new Audio( 'assets/sounds/success-sound.mp3' );
+const errorSound = new Audio( 'assets/sounds/error-sound.mp3' );
+
 // Event listeners para validaciones en tiempo real
 document.getElementById( 'day' ).addEventListener( 'input', validateDay );
 document.getElementById( 'month' ).addEventListener( 'input', validateMonth );
@@ -15,6 +19,8 @@ function validateDay() {
     dayInput.classList.remove( 'success' );
     icon.classList.add( 'error-icon' );
     icon.classList.remove( 'success-icon' );
+    errorSound.play();  // Reproducir sonido de error
+    vibrate();  // Activar vibración en dispositivos móviles
   } else {
     dayInput.classList.remove( 'error' );
     dayInput.classList.add( 'success' );
@@ -34,6 +40,8 @@ function validateMonth() {
     monthInput.classList.remove( 'success' );
     icon.classList.add( 'error-icon' );
     icon.classList.remove( 'success-icon' );
+    errorSound.play();  // Reproducir sonido de error
+    vibrate();  // Activar vibración en dispositivos móviles
   } else {
     monthInput.classList.remove( 'error' );
     monthInput.classList.add( 'success' );
@@ -54,6 +62,8 @@ function validateYear() {
     yearInput.classList.remove( 'success' );
     icon.classList.add( 'error-icon' );
     icon.classList.remove( 'success-icon' );
+    errorSound.play();  // Reproducir sonido de error
+    vibrate();  // Activar vibración en dispositivos móviles
   } else {
     yearInput.classList.remove( 'error' );
     yearInput.classList.add( 'success' );
@@ -73,8 +83,12 @@ document.getElementById( 'age-form' ).addEventListener( 'submit', function ( eve
   if ( validateDate( day, month, year ) ) {
     const age = calculateAge( day, month, year );
     displayResult( age.years, age.months, age.days );
+    successSound.play();  // Reproducir sonido de éxito
+    vibrate();  // Activar vibración en dispositivos móviles
   } else {
     displayError();
+    errorSound.play();  // Reproducir sonido de error
+    vibrate();  // Activar vibración en dispositivos móviles
   }
 } );
 
@@ -119,4 +133,11 @@ function displayResult( years, months, days ) {
 // Mostrar un mensaje de error
 function displayError() {
   alert( 'Please enter a valid date.' );
+}
+
+// Función para vibrar en dispositivos móviles
+function vibrate() {
+  if ( navigator.vibrate ) {
+    navigator.vibrate( 200 );  // Vibrar por 200ms
+  }
 }
